@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
                     <p class="field">
-                        Distance: {{ traveldistance }}
+                        Distance: {{ traveldistance }} {{travelDistance}}
                     </p>
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
@@ -95,7 +95,7 @@ export default {
       if (data.length === 5 || data.length === 6) {
         axios
           .get(
-            `http://maps.googleapis.com/maps/api/geocode/json?address=${data}&sensor=true`
+            `https://maps.googleapis.com/maps/api/geocode/json?address=${data}&sensor=true`
           )
           .then(function(response) {
             vm.destinationCity = response.data.results[0].formatted_address;
@@ -126,11 +126,15 @@ export default {
               console.log(response.rows[0].elements[0].distance.text);
               console.log(response.rows[0].elements[0].duration.text);
               alert(response.rows[0].elements[0].duration.text);
+              vm.travelDistance = response.rows[0].elements[0].distance.text;
               return response.rows[0].elements[0].duration.text;
             }
           );
         } else {
         }
+      },
+      set: function(value) {
+        this.travelDistance = value;
       }
     }
   }
