@@ -76,7 +76,7 @@ export default {
       if (data.length === 5 || data.length === 6) {
         axios
           .get(
-            `http://maps.googleapis.com/maps/api/geocode/json?address=${data}&sensor=true`
+            `https://maps.googleapis.com/maps/api/geocode/json?address=${data}&sensor=true`
           )
           .then(function(response) {
             vm.originCity = response.data.results[0].formatted_address;
