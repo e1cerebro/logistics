@@ -4,7 +4,7 @@
                 <div class="row">
                     <div class="col-lg-5 col-md-6  secpaddlf">
                         <div class="fh-section-title clearfix  text-left version-dark paddbtm40">
-                            <h2>Why Choosing us?</h2>
+                            <h2>Why Choosing us? {{origin}}</h2>
                         </div>
                         <div class="fh-icon-box  style-2 icon-left has-line">
                             <span class="fh-icon"><i class="flaticon-international-delivery"></i></span>
@@ -53,6 +53,13 @@ export default {
     return {
       msg: "Welcome to Your Vue.js App"
     };
+  },
+  computed: {
+    origin: {
+      get() {
+        return this.$store.getters.getTravelDistance;
+      }
+    }
   }
 };
 </script>
