@@ -26,15 +26,14 @@
                   <p class="field">
                       <input name="delivery-city" v-model="origin" value="" placeholder="Origin Postal Code*" type="text">
                   </p>
-                  <p v-if=" originCity.length > 0"  class="text-danger address">{{originCity}}</p>
-                  <p v-else class="address">Origin city</p>
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
                     <p class="field">
                         <input name="delivery-city" v-model="destination" value="" placeholder="Destination Postal Code*" type="text">
                     </p>
-                  <p v-if="destinationCity.length > 0"  class="text-danger address">{{getMovement}}</p>
-                  <p v-else class="address">Destination City</p>
+                </div>
+                <div class="col-md-12 col-xs-12 col-sm-12">
+                  <p class="text-danger address text-center">{{getMovement}}</p>
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
                     <p class="field">
@@ -201,32 +200,7 @@ export default {
       } else if ("destination" === source) {
         this.$store.dispatch("updateDestinationCity", data);
       }
-
       this.setTravelDistance();
-      // let vm = this;
-      // if (data.length === 5 || data.length === 6) {
-      //   axios
-      //     .get(
-      //       `https://maps.googleapis.com/maps/api/geocode/json?address=${data}&sensor=false&key=AIzaSyCMZyZ6Brr6yt8NBYXINd2KN_f5AqCB-qc`
-      //     )
-      //     .then(function(response) {
-      //       console.log(source + "<br/> " + data);
-      //       console.log(response);
-      //       let result = response.data.results[0].formatted_address;
-      //       if ("origin" === source) {
-      //         vm.$store.dispatch("updateOriginCity", result);
-      //       } else if ("destination" === source) {
-      //         vm.$store.dispatch("updateDestinationCity", result);
-      //       }
-      //       vm.setTravelDistance();
-      //     })
-      //     .catch(function(error) {
-      //       console.log(error);
-      //     });
-      //   console.log(data);
-      // } else {
-      //   vm.originCity = "";
-      // }
     }
   }
 };
