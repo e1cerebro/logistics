@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-5 col-lg-offset-2 col-md-6 quofrm1  secpaddlf">
+  <div class="row quofrm1  secpaddlf">
     <div class="fh-section-title clearfix  text-left version-dark paddbtm40">
         <h2>Book Appointment</h2>
     </div>
@@ -10,11 +10,10 @@
                     <p class="field">
                         <input v-model="fullname" placeholder="Name*" type="text">
                     </p>
-                    <p>{{fullname}}</p>
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
                     <p class="field">
-                        <input name="your-email" v-model="email" value="" placeholder="Email*" type="email">
+                        <input v-model="email" placeholder="Email*" type="email">
                     </p>
                 </div>
                  <div class="col-md-6 col-xs-12 col-sm-12">
@@ -23,13 +22,23 @@
                     </p>
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
+                    <p class="field">
+                        <input v-model="phone" placeholder="Phone *" type="email">
+                    </p>
+                </div>
+                 <div class="col-md-6 col-xs-12 col-sm-12">
+                    <p class="field">
+                        <input v-model="moveDate" placeholder="Date DD/MM/YYYY *" type="text">
+                    </p>
+                </div>
+                <div class="col-md-6 col-xs-12 col-sm-12">
                   <p class="field">
-                      <input name="delivery-city" v-model="origin" value="" placeholder="Origin Postal Code*" type="text">
+                      <input name="delivery-city" v-model="origin" value="" placeholder="Leaving From *" type="text">
                   </p>
                 </div>
                 <div class="col-md-6 col-xs-12 col-sm-12">
                     <p class="field">
-                        <input name="delivery-city" v-model="destination" value="" placeholder="Destination Postal Code*" type="text">
+                        <input name="delivery-city" v-model="destination" value="" placeholder="Moving To *" type="text">
                     </p>
                 </div>
                 <div class="col-md-12 col-xs-12 col-sm-12">
@@ -53,7 +62,7 @@
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <p class="field submit">
-                        <input value="Next" class="fh-btn" type="submit">
+                        <button @click="summary" class="fh-btn" type="button">Next</button>
                     </p>
                 </div>
             </div>
@@ -67,11 +76,7 @@ import axios from "axios";
 
 export default {
   data() {
-    return {
-      email: "",
-      weight: "",
-      message: ""
-    };
+    return {};
   },
   watch: {
     origin(data) {
@@ -82,6 +87,46 @@ export default {
     }
   },
   computed: {
+    message: {
+      get() {
+        return this.$store.getters.getMessage;
+      },
+      set(value) {
+        this.$store.dispatch("updateMessage", value);
+      }
+    },
+    weight: {
+      get() {
+        return this.$store.getters.getWeight;
+      },
+      set(value) {
+        this.$store.dispatch("updateWeight", value);
+      }
+    },
+    phone: {
+      get() {
+        return this.$store.getters.getPhone;
+      },
+      set(value) {
+        this.$store.dispatch("updatePhone", value);
+      }
+    },
+    moveDate: {
+      get() {
+        return this.$store.getters.getMoveDate;
+      },
+      set(value) {
+        this.$store.dispatch("updateMoveDate", value);
+      }
+    },
+    email: {
+      get() {
+        return this.$store.getters.getEmail;
+      },
+      set(value) {
+        this.$store.dispatch("updateEmail", value);
+      }
+    },
     fullname: {
       get() {
         return this.$store.getters.getFullname;
@@ -144,6 +189,9 @@ export default {
     }
   },
   methods: {
+    summary() {
+      this.$router.push({ path: "summary" });
+    },
     updateValue(event) {
       console.log(event.target.value);
       this.$store.dispatch("updatex", event.target.value);

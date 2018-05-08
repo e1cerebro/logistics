@@ -18,7 +18,9 @@ const state = {
         weight: "",
         message: "",
         fullname: "",
-        movement: ""
+        movement: "",
+        phone: "",
+        moveDate: ""
     }
 };
 
@@ -59,6 +61,23 @@ const mutations = {
     updateMovement: (state, payload) => {
         console.log("dispatched from movt :" + payload);
         state.booking.movement = payload;
+    },
+    updateEmail: (state, payload) => {
+        console.log("dispatched from email :" + payload);
+        state.booking.email = payload;
+    },
+    updateWeight: (state, payload) => {
+        console.log("dispatched from weight :" + payload);
+        state.booking.weight = payload;
+    },
+    updateMoveDate: (state, payload) => {
+        state.booking.moveDate = payload;
+    },
+    updateMessage: (state, payload) => {
+        state.booking.message = payload;
+    },
+    updatePhone: (state, payload) => {
+        state.booking.phone = payload;
     }
 };
 
@@ -88,6 +107,21 @@ const actions = {
     },
     updateMovement: ({ commit }, payload) => {
         commit("updateMovement", payload);
+    },
+    updateEmail: ({ commit }, payload) => {
+        commit("updateEmail", payload);
+    },
+    updateWeight: ({ commit }, payload) => {
+        commit("updateWeight", payload);
+    },
+    updateMoveDate: ({ commit }, payload) => {
+        commit("updateMoveDate", payload);
+    },
+    updatePhone: ({ commit }, payload) => {
+        commit("updatePhone", payload);
+    },
+    updateMessage: ({ commit }, payload) => {
+        commit("updateMessage", payload);
     }
 };
 
@@ -95,6 +129,9 @@ const actions = {
 const getters = {
     getFullname: state => {
         return state.booking.fullname;
+    },
+    getEmail: state => {
+        return state.booking.email;
     },
     getOrigin: state => {
         return state.booking.origin;
@@ -116,6 +153,18 @@ const getters = {
     },
     getMovement: state => {
         return state.booking.movement;
+    },
+    getWeight: state => {
+        return state.booking.weight;
+    },
+    getMoveDate: state => {
+        return state.booking.moveDate;
+    },
+    getMessage: state => {
+        return state.booking.message;
+    },
+    getPhone: state => {
+        return state.booking.phone;
     }
 };
 
